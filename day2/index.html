@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="text"></div>
+    <script>
+      // conversion with console.log and innerHTML
+      let num = "1234";
+      console.log(typeof num); //string
+      let convertedNum = Number(num);
+      console.log(typeof convertedNum); //number
+
+      let num2 = "asd";
+      console.log(typeof num2); //string
+      let convertedNum2 = Number(num2);
+      console.log(typeof convertedNum2); //NaN (Not a Number)
+
+      // true convert into number  then i will get 1 number
+      // false convert into number then i will get 0 number
+      // 1 convert into boolean then i will get true
+      // 0 convert into boolean then i will get false
+      // -1 , 2 ,6  convert into boolean then i will get true
+
+      let boolean = false;
+
+      let resultConverted = Number(boolean);
+      console.log(resultConverted); // 0
+
+      // Number()
+      // Boolean()
+      // String()
+
+      let string = "";
+      let resultConvertedBoolean = Boolean(string);
+      console.log(resultConvertedBoolean); // false
+
+      let text = document.getElementById("text");
+      text.innerHTML = `<h4>${resultConvertedBoolean}</h4>`;
+    </script>
+  </body>
+</html>

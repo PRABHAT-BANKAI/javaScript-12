@@ -53,8 +53,62 @@ sum -= 5;
 console.log(sum, "subract");
 
 // sum = sum % 2;
-sum %= 2
+sum %= 2;
 console.log(sum, "reminder");
 
-
 // Comparison operators
+// >
+// <
+// >=
+// <=
+//  ==
+//   !=
+//   ===
+//   !==
+
+console.log(5 > 1); // true
+console.log(5 < 1); // false
+console.log(5 >= 7); // false
+
+console.log(5 == 6); // false
+
+console.log("5" === 5, "value"); // false
+
+console.log(7 != 7); //false
+console.log(7 !== "7");
+
+// Logical operators
+
+// && (and) return false and false value
+// || (or)
+
+console.log(5 > 1 && 4 < 1 && 9 > 1); // false
+console.log(5 > 1 && 6 > 1 && 9 > 1); // true
+
+console.log(5 < 1 || 4 < 1 || 9 > 1); //true
+
+console.log(5 < 1 || 4 < 1 || 9 < 1); //false
+
+console.log((4 < 1 && 9 < 1) || 5 > 1); //false
+
+// false && 9 < 1
+//5>1 || false
+
+//4 < 1 && 9 < 1
+//false
+
+//swapping
+
+let x = 10;
+let y = 15;
+
+let temp = 0;
+
+temp = x; // temp = 10
+
+x = y; // x= 15
+y = temp; // y = 10
+
+x = y+x  // 25
+y = x-y // 10
+x = x-y  //15
