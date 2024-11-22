@@ -34,6 +34,10 @@ console.log(50 / 2);
 // modulus operator
 console.log(53 % 2); // modulus return reminder
 
+// prefix operator
+// ++number   --number
+//postfix operator
+// number++   number--
 // Assignment operators
 //  =
 // +=
