@@ -1,0 +1,31 @@
+<!-- DOM HTML DOM Changed query Selector and querySelectorsAll AddEventListner -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+      #text {
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DOM (docment object model)</h1>
+    <p id="text"></p>
+
+    <p id="head" class="heading">hi from heading</p>
+    <script>
+      let text = document.getElementById("text");
+      text.innerText = "hello from paragraph tag";
+      // text.style.color = "purple";
+
+      let heading = document.querySelector(".heading");
+      
+      console.log(heading.textContent);
+    </script>
+  </body>
+</html>
