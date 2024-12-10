@@ -1,0 +1,69 @@
+<!-- All queryselector with some example -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #heading {
+        background-color: aqua;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="heading"></h1>
+    <p class="para"></p>
+    <button class="inc">increment</button>
+    <button class="btn">Color Change</button>
+
+    <script>
+      let head = document.querySelector("#heading");
+
+      head.textContent = "hello from javascript";
+      // console.log(heading);
+      head.style.color = "red";
+      head.style.backgroundColor = "yellow";
+      // const object = {
+      //   name: "array",
+      //   marks: {
+      //     english: {
+      //       subject: "English",
+      //       marks: 85,
+      //     },
+      //   },
+      // };
+      // console.log(object.marks.english.marks)
+      let btn = document.querySelector(".btn");
+
+      btn.addEventListener("dblclick", () => {
+        head.style.color = "blue";
+        head.style.backgroundColor = "green";
+      });
+
+      let para = document.querySelector(".para");
+      let incBtn = document.querySelector(".inc");
+      let count = 0;
+
+      incBtn.addEventListener("click", () => {
+   
+       
+        count++;
+    
+        show()
+      });
+
+
+      function show(){
+        para.innerText = count;
+        para.style.fontSize = "45px"
+       para.style.color = `rgb(${Math.floor(Math.random() * 1000)}, ${Math.floor(Math.random() * 1000)}, ${Math.floor(Math.random() * 1000)})`
+
+      }
+
+
+      show()
+    </script>
+  </body>
+</html>
