@@ -2,9 +2,18 @@ function Animal(name,color,species){
   this.name = name
   this.color = color
   this.species = species
-  this.eat = function(){
-    console.log(`${this.name} is eatiing!`)
-  }
+
+}
+
+// function Dog(name,sound){
+//   Animal.call(this,name)
+  
+// this.sound = sound
+
+// }
+Animal.prototype.eat = function(food){
+
+  console.log(`${this.name} ${food} is eatiing!`)
 }
 
 
@@ -13,10 +22,27 @@ const cat = new Animal("cat","brown","persian")
 
 console.log(dog)
 console.log(cat)
-dog.eat()
-cat.eat()
+dog.eat("bread")
+cat.eat("rusk")
 
-console.log(dog.eat == cat.eat)
+console.log(dog.eat === cat.eat) //true
+
+
+
+let array = [1,2,3,4]
+
+// Array.prototype.map= ()=>{
+//   return 12
+// }
+
+const result = array.map((element)=>{
+return element +5
+})
+
+console.log(result)
+
+
+
 
 
 
