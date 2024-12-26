@@ -7,14 +7,15 @@
   </head>
   <body>
     <h2 id="text"></h2>
-    <img id="imageShow" src="" alt="">
+    <img id="imageShow" src="" alt="" height="200px">
     <button id="back">back</button>
     <button id="next">next</button>
   </body>
   <script>
-    let array = ["javscript", "https://m.media-amazon.com/images/I/8157jzWk-8L._SX522_.jpg", "css", "mongodb", "bootstrap"];
+    let array = ["https://img.freepik.com/free-vector/cute-koala-eating-ramen-noodle-cartoon-vector-icon-illustration-animal-food-icon-concept-isolated_138676-9816.jpg?t=st=1735195665~exp=1735199265~hmac=d19ee4734a19426330073f8da85cc4253e57bc4c59d5b35263114923c8638e2e&w=740", "https://m.media-amazon.com/images/I/8157jzWk-8L._SX522_.jpg","https://img.freepik.com/free-vector/cute-baby-lion-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3783.jpg?t=st=1735195738~exp=1735199338~hmac=13b4bd31b87bdbfb52eee7a043e061926e17ebea1718a7842a5779fa62ed9bfe&w=740"];
     let count = 0;
     let nextBtn = document.getElementById("next");
+    let imageShow = document.getElementById("imageShow");
     let backBtn = document.getElementById("back");
     nextBtn.addEventListener("click", () => {
   
@@ -38,8 +39,8 @@
 });
     function showData() {
       let text = document.querySelector("#text");
-      text.innerText = array[count];
-      // image.src =array[count];
+      // text.innerText = array[count];
+      imageShow.src =array[count];
     }
     showData();
   </script>
