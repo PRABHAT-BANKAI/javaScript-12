@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Introduction of JSON Store data in local Storage</h1>
+    <input id="email" type="text" placeholder="enter your email">
+    <p id="text"></p>
+    <button id="btn">local Storage</button>
+    <button id="show">show text</button>
+    <a href="./show.html">Show page</a>
+    <script>
+      let btn = document.getElementById("btn");
+      let show = document.getElementById("show");
+      let text = document.getElementById("text");
+      let email = document.getElementById("email");
+      btn.addEventListener("click", () => {
+        // localStorage.setItem("name", "batman");
+        localStorage.setItem("email", email.value);
+        localStorage.setItem("data",JSON.stringify({userName:"batman",password:"12345"})); //json javascript object notation
+      });
+
+      show.addEventListener("click", () => {
+        let data = JSON.parse(localStorage.getItem("data")) ;
+        console.log(data);
+        text.innerText = data.password;
+      })
+    </script>
+  </body>
+</html>
