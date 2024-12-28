@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="text" type="text" placeholder="enter todo" />
+    <button id="add-btn">add</button>
+    <div id="container"></div>
+
+    <script>
+      let todolist = JSON.parse(localStorage.getItem("todoData"))||[];
+      const textInput = document.getElementById("text");
+      const addBtn = document.getElementById("add-btn");
+      const container = document.getElementById("container");
+
+      addBtn.addEventListener("click", () => {
+        if (textInput.value == "") {
+          alert("please enter todo first");
+          return;
+        }
+        const newTodo = textInput.value;
+        todolist.push(newTodo);
+        localStorage.setItem("todoData", JSON.stringify(todolist)); // save to local storage
+        showData();
+        textInput.value = "";
+      });
+
+      function showData() {
+        container.innerHTML = ""; // clear the container before re-rendering
+        todolist.forEach((todo,index) => {
+          let card = document.createElement("div");
+          card.style.border = "1px solid black";
+          card.style.height = "100px";
+          card.style.width = "200px";
+          let edit = document.createElement("button");
+          let del = document.createElement("button");
+          let para = document.createElement("p");
+          para.innerText = todo;
+          edit.textContent = "edit";
+          del.textContent = "delete";
+
+
+          del.addEventListener("click",()=>{
+           todolist= todolist.filter((item,i)=>{
+              return i!== index
+            })
+            localStorage.setItem("todoData", JSON.stringify(todolist)); // save to local storage 
+            showData()
+          })
+
+          card.append(para, edit, del);
+          container.append(card);
+        });
+      }
+
+      showData();
+    </script>
+  </body>
+</html>
