@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <video autoplay muted id="batman" src=""></video>
+  <script>
+    let video = document.getElementById("batman");
+let count = 5
+ let id =    setInterval(()=>{
+    if(count == 1){
+      clearInterval(id)
+      video.src = "batman.mp4"
+    }
+    },1000)
+  </script>
+</body>
+</html>

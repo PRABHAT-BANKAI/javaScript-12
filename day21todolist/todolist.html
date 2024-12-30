@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Todolist</h1>
+    <input id="text" type="text" />
+    <button id="add">add todo</button>
+    <div id="container"></div>
+
+    <script>
+      let todolist = JSON.parse(localStorage.getItem("todoData"))  ||[];
+      const textInput = document.getElementById("text");
+      const addButton = document.querySelector("#add");
+      const container = document.getElementById("container");
+
+      addButton.addEventListener("click", () => {
+        // console.log(textInput.value);
+        todolist.push(textInput.value);
+        console.log(todolist);
+        localStorage.setItem("todoData", JSON.stringify(todolist));
+        showData();
+        textInput.value = "";
+      });
+
+      function showData() {
+        container.innerHTML = ""; // clear previous data
+        todolist.forEach((todo) => {
+          let card = document.createElement("div");
+          let para = document.createElement("p");
+          para.innerText = todo;
+
+          card.append(para);
+          container.append(card);
+        });
+      }
+
+      showData();
+    </script>
+  </body>
+</html>
