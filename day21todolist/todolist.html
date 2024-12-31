@@ -12,13 +12,17 @@
     <div id="container"></div>
 
     <script>
-      let todolist = JSON.parse(localStorage.getItem("todoData"))  ||[];
+      let todolist = JSON.parse(localStorage.getItem("todoData")) || [];
       const textInput = document.getElementById("text");
       const addButton = document.querySelector("#add");
       const container = document.getElementById("container");
 
       addButton.addEventListener("click", () => {
         // console.log(textInput.value);
+        if(textInput.value==""){
+          alert("Please enter a valid task");
+          return;  // stop adding task if input is empty or null
+        }
         todolist.push(textInput.value);
         console.log(todolist);
         localStorage.setItem("todoData", JSON.stringify(todolist));
@@ -28,12 +32,28 @@
 
       function showData() {
         container.innerHTML = ""; // clear previous data
-        todolist.forEach((todo) => {
+        todolist.forEach((todo, index) => {
           let card = document.createElement("div");
           let para = document.createElement("p");
           para.innerText = todo;
+          let del = document.createElement("button");
+          del.textContent = "delete";
 
-          card.append(para);
+          del.addEventListener("click", () => {
+            todolist = todolist.filter((item, i) => i != index);
+            localStorage.setItem("todoData", JSON.stringify(todolist));
+            showData();
+          });
+
+          let edit = document.createElement("button");
+          edit.textContent = "edit";
+          edit.addEventListener("click", () => {
+            let newText= prompt(`${todo}`)
+            todolist[index] = newText;
+            localStorage.setItem("todoData", JSON.stringify(todolist));
+            showData();
+          })
+          card.append(para, del, edit);
           container.append(card);
         });
       }
