@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="fetchBtn">Fetch</button>
+  <img id="image" src="" alt="" height="200px">
+<script>
+  let fetchBtn = document.getElementById("fetchBtn");
+  let image = document.getElementById("image");
+  
+  fetchBtn.addEventListener("click",fetchShow)
+
+  function fetchShow(){
+    fetch("https://dog.ceo/api/breeds/image/random").then((response)=>{
+      return response.json();
+    }).then((res)=>{
+      // console.log(res)
+      image.src = res.message;
+    })
+  }
+
+  fetchShow()
+</script>
+</body>
+</html>
