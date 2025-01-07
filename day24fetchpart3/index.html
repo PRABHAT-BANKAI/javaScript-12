@@ -1,0 +1,64 @@
+<!-- DOG API different ways -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="text" type="text" />
+    <button id="btn">search</button>
+    <div id="container"></div>
+
+
+    <script>
+      const btn = document.getElementById("btn");
+      const text = document.getElementById("text");
+      const container = document.querySelector("#container");
+ 
+
+      btn.addEventListener("click",()=>{
+        if(text.value ==""){
+          alert("Please enter a breed name first")
+          return;
+        }
+        fetchData()
+        text.value = ""
+      })
+
+      function fetchData() {
+
+        fetch(`https://dog.ceo/api/breed/${text.value}/images`).then((response) => {
+          return response.json()
+        }).then((res)=>{
+          console.log(res)
+          showData(res.message)
+        }).catch((error)=>{
+          console.log(error)
+          alert("breed name is wrong")
+        })
+
+      }
+
+
+
+      function showData(array){
+        container.innerHTML = ""
+        let start = Math.floor(Math.random()*100)
+        console.log(start)
+        let end = Math.floor(Math.random()*100)
+        console.log(end)
+       array = array.slice(0,10)
+      array.forEach((element)=>{
+        let image = document.createElement("img")
+        image.src = element
+        image.style.height="100px"
+        container.append(image)
+      });
+
+      }
+    </script>
+  </body>
+</html>
