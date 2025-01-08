@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Movie api</h1>
+    <button onclick="fetchShow()">Fetch show</button>
+
+    <div>
+      <h2 id="title"></h2>
+      <p id="desc"></p>
+      <p id="rating"></p>
+      <p id="media"></p>
+    </div>
+    <script>
+      let title = document.getElementById("title");
+      let desc = document.getElementById("desc");
+      let rating = document.getElementById("rating");
+      let image = document.getElementById("image");
+      let mediaType = document.getElementById("media");
+      async function fetchShow() {
+        const url =
+          "https://movies-ratings2.p.rapidapi.com/ratings?id=tt0111161";
+        const options = {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "0190d31adamsh58a693a760a401bp145c8ajsn0513254521ed",
+            "x-rapidapi-host": "movies-ratings2.p.rapidapi.com",
+          },
+        };
+
+        try {
+          const response = await fetch(url, options);
+          const result = await response.json();
+          console.log(result);
+          title.textContent = result.media.original_title;
+          desc.textContent = result.media.overview;
+          rating.textContent = result.media.budget;
+          mediaType.innerHTML = result.media.media_type;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    </script>
+  </body>
+</html>
