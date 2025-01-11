@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <h3 id="total"></h3>
+    <button id="checkout">checkout</button>
+    <script>
+      let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+      let container = document.getElementById("container");
+      let totalText = document.getElementById("total");
+      let checkout = document.getElementById("checkout");
+
+      checkout.addEventListener("click",()=>{
+        alert("your shopping is successful!");
+        localStorage.removeItem("cart");
+        container.innerHTML = "";
+        showData();
+        totalText.innerText = "Total: rupees 0";
+        window.location.href ="./ProductPage.html"
+      })
+
+      function showData() {
+        let totalSumCart = 0;
+        container.innerHTML = "";
+        if (cartData.length == 0) {
+          alert("please add some products to the cart");
+        }
+        cartData.forEach((element) => {
+          let totalPrice = element.price * element.quantity; // Calculate total for current item
+          totalSumCart += totalPrice;
+          let card = document.createElement("div");
+          let title = document.createElement("h2");
+          title.innerText = element.title;
+          let price = document.createElement("p");
+          price.innerText = element.price;
+          let quantity = document.createElement("span");
+          quantity.innerText = element.quantity;
+          let inc = document.createElement("button");
+          inc.innerText = "+";
+          inc.addEventListener("click", () => {
+            element.quantity++;
+            localStorage.setItem("cart", JSON.stringify(cartData));
+            showData();
+          });
+          let dec = document.createElement("button");
+          dec.addEventListener("click", () => {
+            if (element.quantity > 1) {
+              element.quantity--;
+
+            }
+            localStorage.setItem("cart", JSON.stringify(cartData));
+            showData();
+          });
+          dec.innerText = "-";
+  
+          card.append(title, price, inc, quantity, dec);
+          container.append(card);
+        });
+        totalText.innerText = `Total: ₹${totalSumCart}`;
+
+      }
+
+      showData();
+    </script>
+  </body>
+</html>

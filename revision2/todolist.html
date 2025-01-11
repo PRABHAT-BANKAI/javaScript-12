@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>todolist</h1>
+    <input id="text" type="text" />
+    <button id="addBtn">add</button>
+
+    <div id="container"></div>
+
+    <script>
+      let todolist = JSON.parse(localStorage.getItem("todoData")) ||[];
+      const text = document.getElementById("text");
+      const addBtn = document.getElementById("addBtn");
+      let container = document.getElementById("container");
+      addBtn.addEventListener("click", () => {
+        todolist.push(text.value);
+        console.log(todolist);
+        localStorage.setItem("todoData", JSON.stringify(todolist));
+        showData();
+        text.value = "";
+      });
+
+      function showData() {
+        container.innerHTML = "";
+        todolist.forEach((todo, index) => {
+          let card = document.createElement("div");
+          let para = document.createElement("p");
+          let del = document.createElement("button");
+          del.textContent = "delete";
+          del.addEventListener("click", () => {
+            todolist = todolist.filter((item, i) => i != index);
+            localStorage.setItem("todoData", JSON.stringify(todolist));
+            showData();
+          });
+          let edit = document.createElement("button");
+          edit.textContent = "edit";
+
+          para.textContent = todo;
+
+          card.append(para,del,edit);
+          container.append(card);
+        });
+      }
+
+      showData();
+    </script>
+  </body>
+</html>
