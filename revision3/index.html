@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="text" type="text" />
+    <button id="add">add task</button>
+    <div id="container"></div>
+    <script>
+      let todolist = JSON.parse(localStorage.getItem("todoData")) || []; //[react,html,css]  // todolist.push(text)
+      let container = document.getElementById("container");
+      let text = document.getElementById("text");
+      let add = document.getElementById("add");
+
+      add.addEventListener("click", () => {
+        if (text.value == "") {
+          alert("Please enter a task first");
+          return; // exit function if input is empty
+        }
+        todolist.push(text.value);
+        localStorage.setItem("todoData", JSON.stringify(todolist)); //[react]
+        showData(); // update DOM with new task
+        text.value = ""; // clear input field after adding task
+        console.log(todolist);
+      });
+
+      function showData() {
+        container.innerHTML = ""; // remove previous tasks before adding new ones
+        todolist.forEach((todo, index) => {
+          let card = document.createElement("div");
+          let title = document.createElement("p");
+          let del = document.createElement("button");
+          del.innerText = "Delete";
+          title.innerText = todo;
+          del.addEventListener("click", () => {
+          todolist=  todolist.filter((element, i) => index != i);//[react,html,css] i=2 index=2
+          localStorage.setItem("todoData", JSON.stringify(todolist)); //[react]
+          showData(); // update DOM after deleting task       
+          });
+          card.append(title, del);
+          container.append(card);
+        });
+      }
+
+      showData();
+    </script>
+  </body>
+</html>
